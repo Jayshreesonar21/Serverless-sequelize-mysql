@@ -1,0 +1,40 @@
+service: sls-boilerplate-sequilize
+
+plugins:
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+
+functions:
+  teamsAll:
+    handler: functions/team/handler.teamsAll
+    events:
+      - http:
+          path: teams
+          method: get
+  createTeam:
+    handler: functions/team/handler.createTeam
+    events:
+      - http:
+          path: teams
+          method: post
+  deleteTeam:
+    handler: functions/team/handler.deleteTeam
+    events:
+      - http:
+          path: teams/{id}
+          method: delete
+  teamOne:
+    handler: functions/team/handler.teamsOne
+    events:
+      - http:
+          path: teams/{id}
+          method: get
+  updateTeam:
+    handler: functions/team/handler.updateTeam
+    events:
+      - http:
+          path: teams/{id}
+          method: put
