@@ -1,64 +1,42 @@
-const sequelize = require('../lib/database.js')
 const Sequelize = require('sequelize')
+const sequelize = require('../../models')
 
-const Team = require('../models/team.js')(sequelize, Sequelize)
-// TODO: resole promise / async function
-// possible race condition
+const Team = require('../../models/team.js')(sequelize, Sequelize)
 Team.sync()
 
-const getAll = async (event, ct, callback) => {
+const getAll = async event => {
   try {
     const teams = await Team.findAll()
-    const response = {
+    return {
       statusCode: 200,
       body: JSON.stringify({
         data: teams,
         status: true
       })
     }
-    return callback(null, response)
   } catch (err) {
-    console.log('::::::: err ::::::: ', err)
+    console.log('::::::: err getAll::::::: ', err)
   }
 }
 
-const getById = async (event, ct, callback) => {
+const getById = async event => {
   try {
     const id = event.pathParameters.id
-    console.log('::::::::::::: id ::::::::::: ', id)
+
     const team = await Team.findOne({ where: { id } })
-    const response = {
+    return {
       statusCode: 200,
       body: JSON.stringify({
         data: team,
         status: true
       })
     }
-    return callback(null, response)
   } catch (err) {
-    console.log('::::::: err ::::::: ', err)
+    console.log('::::::: err getById::::::: ', err)
   }
 }
 
-const deleteById = async (event, ctx, callback) => {
-  try {
-    const id = event.pathParameters.id
-    await Team.destroy({ where: { id } })
-
-    const response = {
-      statusCode: 200,
-      body: JSON.stringify({
-        message: 'Deleted !!',
-        status: true
-      })
-    }
-    return callback(null, response)
-  } catch (err) {
-    console.log('::::::::::::: Err :::::::::::::: ', err)
-  }
-}
-
-const create = async (event, ct, callback) => {
+const create = async event => {
   try {
     let body = event.body ? event.body : {}
     const data = JSON.parse(body)
@@ -72,20 +50,36 @@ const create = async (event, ct, callback) => {
       staff: staff,
       description: description
     })
-    const response = {
+    return {
       statusCode: 200,
       body: JSON.stringify({
         data: team,
         status: true
       })
     }
-    return callback(null, response)
   } catch (err) {
-    console.log('::::::: err ::::::: ', err)
+    console.log('::::::: err create::::::: ', err)
   }
 }
 
-const update = async (event, ctx, callback) => {
+const deleteById = async event => {
+  try {
+    const id = event.pathParameters.id
+    await Team.destroy({ where: { id } })
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        message: 'Deleted !!',
+        status: true
+      })
+    }
+  } catch (err) {
+    console.log('::::::::::::: Err deleteById:::::::::::::: ', err)
+  }
+}
+
+const update = async event => {
   try {
     let body = event.body ? event.body : {}
     const id = event.pathParameters.id
@@ -104,16 +98,15 @@ const update = async (event, ctx, callback) => {
       },
       { where: { id } }
     )
-    const response = {
+    return {
       statusCode: 200,
       body: JSON.stringify({
         message: 'Updated !!',
         status: true
       })
     }
-    return callback(null, response)
   } catch (err) {
-    console.log('::::::::: err :::::::: ', err)
+    console.log('::::::::: err update :::::::: ', err)
   }
 }
 

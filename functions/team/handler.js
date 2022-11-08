@@ -1,24 +1,22 @@
 'use strict'
-var team = require('../../ops/team')
-// const database = require('../../middleware/database');
-// database.connect();
+var team = require('./team.service')
 
-module.exports.teamsAll = (event, context, callback) => {
-  team.getAll(event, context, callback)
+module.exports.teamsAll = async event => {
+  return await team.getAll(event)
 }
 
-module.exports.teamsOne = (event, context, callback) => {
-  team.getById(event, context, callback)
+module.exports.teamsOne = async event => {
+  return await team.getById(event)
 }
 
-module.exports.createTeam = (event, context, callback) => {
-  team.create(event, context, callback)
+module.exports.createTeam = async event => {
+  return await team.create(event)
 }
 
-module.exports.deleteTeam = (event, context, callback) => {
-  team.deleteById(event, context, callback)
+module.exports.deleteTeam = async event => {
+  return await team.deleteById(event)
 }
 
-module.exports.updateTeam = (event, context, callback) => {
-  team.update(event, context, callback)
+module.exports.updateTeam = async event => {
+  return await team.update(event)
 }

@@ -1,32 +1,30 @@
 {
-  "name": "serverless-mysql-sequelize-boilerplate",
+  "name": "serverless-mysql-sequelize",
   "version": "1.0.0",
-  "description": "serverless-mysql-sequelize-boilerplate",
-  "main": "handler.js",
+  "description": "This will be a guide+boilerplate on getting started on with Serverless + MySQL with Sequelize (ORM for NodeJS)",
+  "main": "index.js",
   "directories": {
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "serverless offline start"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/chamathpali/serverless-mysql-sequelize-boilerplate.git"
+    "url": "git+https://Jayshreesonar21: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@github.com/Jayshreesonar21/Serverless-sequelize-mysql.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/chamathpali/serverless-mysql-sequelize-boilerplate/issues"
+    "url": "https://github.com/Jayshreesonar21/Serverless-sequelize-mysql/issues"
   },
-  "homepage": "https://github.com/chamathpali/serverless-mysql-sequelize-boilerplate#readme",
+  "homepage": "https://github.com/Jayshreesonar21/Serverless-sequelize-mysql#readme",
   "devDependencies": {
-    "serverless": "^1.15.4-alpha.1",
-    "serverless-offline": "^3.30.0"
+    "serverless-offline": "^11.3.0"
   },
   "dependencies": {
     "mysql2": "^2.3.3",
-    "pg": "^7.6.0",
-    "sequelize": "^4.44.4"
+    "pg": "^8.8.0",
+    "sequelize": "^6.25.5"
   }
 }
